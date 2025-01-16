@@ -1,65 +1,64 @@
 name: Build Electron App
 
- on:
-   push:
-     branches:
-       - main
+on:
+  push:
+    branches:
+      - main
 
- jobs:
-   build:
-     runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
     strategy:
-         matrix:
-          os: [windows-latest, macos-latest, ubuntu-latest]
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
 
-     steps:
-        - name: Checkout code
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v3
-          with:
-             node-version: 18
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-        - name: Install electron packager globally
-          run: npm install electron-packager -g
+      - name: Install electron packager globally
+        run: npm install electron-packager -g
 
-        - name: Build Electron Application - Windows
-          if: matrix.os == 'windows-latest'
-          run: electron-packager . my-ontology-app --platform=win32 --arch=x64 --overwrite --icon=icon.ico --ignore=node_modules --out=dist
+      - name: Build Electron Application - Windows
+        if: matrix.os == 'windows-latest'
+        run: electron-packager . my-ontology-app --platform=win32 --arch=x64 --overwrite --icon=icon.ico --ignore=node_modules --out=dist
 
-        - name: Build Electron Application - MacOS
-          if: matrix.os == 'macos-latest'
-          run: electron-packager . my-ontology-app --platform=darwin --arch=x64 --overwrite --icon=icon.icns --ignore=node_modules --out=dist
+      - name: Build Electron Application - MacOS
+        if: matrix.os == 'macos-latest'
+        run: electron-packager . my-ontology-app --platform=darwin --arch=x64 --overwrite --icon=icon.icns --ignore=node_modules --out=dist
 
-        - name: Build Electron Application - Linux
-          if: matrix.os == 'ubuntu-latest'
-          run: electron-packager . my-ontology-app --platform=linux --arch=x64 --overwrite --icon=icon.png --ignore=node_modules --out=dist
+      - name: Build Electron Application - Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: electron-packager . my-ontology-app --platform=linux --arch=x64 --overwrite --icon=icon.png --ignore=node_modules --out=dist
 
+      - name: Create release ZIP for each OS
+        if: matrix.os != 'ubuntu-latest'
+        run: |
+            cd dist
+            7z a -tzip my-ontology-app-${{ matrix.os }}.zip my-ontology-app
 
-        - name: Create release ZIP for each OS
-          if: matrix.os != 'ubuntu-latest'
-          run: |
-              cd dist
-              7z a -tzip my-ontology-app-${{ matrix.os }}.zip my-ontology-app
+      - name: Create release TAR.GZ for Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+            cd dist
+            tar -czvf my-ontology-app-${{ matrix.os }}.tar.gz my-ontology-app
 
-        - name: Create release TAR.GZ for Ubuntu
-          if: matrix.os == 'ubuntu-latest'
-          run: |
-              cd dist
-              tar -czvf my-ontology-app-${{ matrix.os }}.tar.gz my-ontology-app
+      - name: Upload Release
+        uses: actions/upload-artifact@v3
+        if: matrix.os != 'ubuntu-latest'
+        with:
+          name: my-ontology-app-${{ matrix.os }}
+          path: dist/my-ontology-app-${{ matrix.os }}.zip
 
-        - name: Upload Release
-          uses: actions/upload-artifact@v3
-          if: matrix.os != 'ubuntu-latest'
-          with:
-              name: my-ontology-app-${{ matrix.os }}
-              path: dist/my-ontology-app-${{ matrix.os }}.zip
-
-        - name: Upload Release - Ubuntu
-          uses: actions/upload-artifact@v3
-          if: matrix.os == 'ubuntu-latest'
-          with:
-              name: my-ontology-app-${{ matrix.os }}
-              path: dist/my-ontology-app-${{ matrix.os }}.tar.gz
+      - name: Upload Release - Ubuntu
+        uses: actions/upload-artifact@v3
+        if: matrix.os == 'ubuntu-latest'
+        with:
+            name: my-ontology-app-${{ matrix.os }}
+            path: dist/my-ontology-app-${{ matrix.os }}.tar.gz
