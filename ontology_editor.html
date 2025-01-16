@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ontology Data Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+       body {
+           font-family: 'Montserrat', sans-serif;
+          background-color: #001f3f;
+           color: white;
+           display: flex;
+          flex-direction: column;
+           align-items: center;
+            padding: 20px;
+            margin: 0;
+      }
+
+        .form-container {
+            width: 80%;
+             max-width: 800px;
+             margin: 20px 0;
+            background-color: #1a3351;
+           padding: 20px;
+           border-radius: 10px;
+        }
+       .form-container h2 {
+           margin-bottom: 10px;
+       }
+
+        label {
+          display: block;
+            margin-bottom: 5px;
+       }
+       input, select, textarea {
+           width: 100%;
+           padding: 8px;
+           margin-bottom: 10px;
+            box-sizing: border-box;
+          border: 1px solid #ccc;
+            border-radius: 4px;
+         background-color: white;
+            color: black;
+        }
+        textarea {
+            height: 100px;
+        }
+       button {
+          padding: 10px 20px;
+            font-size: 1em;
+             background-color: #199948;
+             color: white;
+            border: none;
+             border-radius: 5px;
+             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+         button:hover {
+             background-color: #b0e372;
+             color: #001f3f;
+        }
+        .button-group {
+          margin: 10px 0;
+        }
+        .button-group button {
+           margin: 0 5px;
+        }
+        .table-container {
+           width: 100%;
+             overflow-x: auto;
+         }
+        table {
+             width: 100%;
+           border-collapse: collapse;
+           margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+           border: 1px solid #ccc;
+           text-align: left;
+        }
+       th {
+            background-color: #1a3351;
+           color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Ontology Data Editor</h1>
+    <div class="form-container" id="formContainer"></div>
+    <div class="button-group">
+      <button onclick="addEntry('class')">Add Class</button>
+       <button onclick="addEntry('instance')">Add Instance</button>
+     <button onclick="addEntry()">Add Edge</button>
+       <button onclick="saveData()">Save Changes</button>
+    <button onclick="window.location.href='homepage.html'">Home</button>
+    <button onclick="window.location.href='ontology/index.html'">View Ontology</button>
+ </div>
+      <div class="table-container" id="tableContainer">
+         <table id="data-table"></table>
+      </div>
+    <script src="script_editor.js"></script>
+</body>
+</html>

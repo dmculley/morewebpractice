@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Line Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #001f3f;
+            color: white;
+             margin: 0;
+            display: flex;
+             flex-direction: column;
+             min-height: 100vh; /*Ensure page fills the height of the viewport*/
+            position: relative; /*For absolute positioning of the menu*/
+        }
+        .banner {
+            background-color: #025289;
+            text-align: center;
+           padding: 40px 20px;
+            color: white;
+        }
+
+          .burger-menu {
+            position: absolute;
+            top: 10px;
+             right: 10px;
+             cursor: pointer;
+            padding: 10px;
+         }
+        .burger-bar {
+             width: 30px;
+            height: 3px;
+             background-color: white;
+            margin: 5px 0;
+        }
+
+         .menu-items {
+            display: none;
+            position: absolute;
+           top: 50px;
+            right: 10px;
+            background-color: #1a3351;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+             z-index: 1;
+        }
+        .menu-items.active {
+             display: block;
+         }
+       .menu-items button {
+           display: block;
+            margin: 5px 0;
+           padding: 10px 20px;
+            font-size: 1em;
+           background-color: #199948;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+           transition: background-color 0.3s ease;
+        }
+        .menu-items button:hover {
+           background-color: #b0e372;
+           color: #001f3f;
+       }
+
+       .button-row {
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+             margin: 20px 0;
+            width: 80%;
+            max-width: 1200px;
+            align-self: center; /*Ensure rows stay centered when page gets smaller*/
+       }
+        .button-row h2 {
+            width: 100%;
+             text-align: left;
+            padding: 10px;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+       }
+
+       .button-container {
+          position: relative; /* for absolute positioning of text area */
+          height: auto; /* set min-height as required */
+           margin: 10px;
+           cursor: pointer;
+            flex-basis: 30%; /* For three buttons in a row */
+           max-width: 300px; /*set max width as desired */
+           aspect-ratio: 1.618; /*Golden Ratio*/
+            overflow: hidden; /*Hide image overflow*/
+       }
+
+        .button-background {
+          position: absolute;
+            top: 0;
+             left: 0;
+           width: 100%;
+           height: 100%;
+            background-size: cover; /* or contain */
+            background-position: center; /*or top, bottom */
+             filter: brightness(80%);
+       }
+       .button-text-area {
+          position: absolute;
+           bottom: 0;
+           left: 0;
+           width: 100%;
+           height: 33%;
+            background-color: rgba(255, 255, 255, 0.1);
+           backdrop-filter: blur(5px);
+            padding: 10px;
+             box-sizing: border-box; /* to include padding in the total width*/
+        }
+       .button-text {
+            text-align: center;
+            color: white;
+          font-size: 1.2em;
+           margin: 0;
+       }
+
+
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>Product Line Explorer</h1>
+   </div>
+   <div class="burger-menu" onclick="toggleMenu()">
+        <div class="burger-bar"></div>
+       <div class="burger-bar"></div>
+      <div class="burger-bar"></div>
+    </div>
+    <div class="menu-items" id="menuItems">
+       <button onclick="window.location.href='ontology_editor.html'">Edit Ontology Data</button>
+    </div>
+     <div class="button-row">
+       <h2>Company Tools</h2>
+        <div class="button-container" onclick="window.location.href='ontology/index.html'">View Ontology>
+            <div class="button-background" style="background-image: url('images/button_bg1.jpg');"></div>
+            <div class="button-text-area">
+                 <p class="button-text">View Ontology</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-row">
+         <h2>Products</h2>
+        <div class="button-container">
+           <div class="button-background" style="background-image: url('images/button_bg1.jpg');"></div>
+            <div class="button-text-area">
+                 <p class="button-text">Product 1</p>
+            </div>
+        </div>
+        <div class="button-container">
+           <div class="button-background" style="background-image: url('images/button_bg1.jpg');"></div>
+            <div class="button-text-area">
+                 <p class="button-text">Product 2</p>
+           </div>
+        </div>
+        <div class="button-container">
+            <div class="button-background" style="background-image: url('images/button_bg1.jpg');"></div>
+            <div class="button-text-area">
+                 <p class="button-text">Product 3</p>
+           </div>
+       </div>
+   </div>
+   <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menuItems');
+           menu.classList.toggle('active');
+        }
+   </script>
+</body>
+</html>

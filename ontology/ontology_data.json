@@ -1,0 +1,171 @@
+{
+  "nodes": [
+    {
+      "id": "Offers",
+      "label": "Offers",
+      "group": "class",
+      "features": [
+        "Pricing",
+        "Terms",
+        "Availability"
+      ],
+      "specifications": {},
+      "valueProposition": "Our offers are designed to meet your needs"
+    },
+    {
+      "id": "Solutions",
+      "label": "Solutions",
+      "group": "class",
+      "features": [
+        "Integration",
+        "Scalability",
+        "Security"
+      ],
+      "specifications": {},
+      "valueProposition": "Our solutions are designed to solve your needs"
+    },
+    {
+      "id": "ProductLines",
+      "label": "Product Lines",
+      "group": "class",
+      "features": [
+        "Variety",
+        "Customisation",
+        "Updates"
+      ],
+      "specifications": {},
+      "valueProposition": "Our product lines are developed to provide maximum value"
+    },
+    {
+      "id": "Feedback",
+      "label": "Feedback",
+      "group": "class",
+      "features": [
+        "User Stories",
+        "Surveys",
+        "Analytics"
+      ],
+      "specifications": {},
+      "valueProposition": "Feedback helps us develop better products"
+    },
+    {
+      "id": "Offer1",
+      "label": "Offer 1",
+      "group": "instance",
+      "class": "Offers",
+      "hidden": true,
+      "specifications": {
+        "Subscription Period": "12 Months",
+        "Service Level Agreement": "99.9% Uptime",
+        "Support": "Email and Phone"
+      },
+      "valueProposition": "Offer 1 provides excellent value for money"
+    },
+    {
+      "id": "Offer2",
+      "label": "Offer 2a",
+      "group": "instance",
+      "class": "Offers",
+      "hidden": true,
+      "specifications": {
+        "test": "passed",
+        "fantasitco": "yes"
+      },
+      "valueProposition": "Offer 2 is suitable for large enterprise"
+    },
+    {
+      "id": "Solution1",
+      "label": "Solution 1",
+      "group": "instance",
+      "class": "Solutions",
+      "hidden": true,
+      "specifications": {},
+      "valueProposition": "Solution 1 can be easily scaled"
+    },
+    {
+      "id": "Solution2",
+      "label": "Solution 2",
+      "group": "instance",
+      "class": "Solutions",
+      "hidden": true,
+      "specifications": {},
+      "valueProposition": "Solution 2 integrates with our other solutions"
+    },
+    {
+      "id": "ProductLine1",
+      "label": "Product Line 1",
+      "group": "instance",
+      "class": "ProductLines",
+      "hidden": true,
+      "specifications": {},
+      "valueProposition": "Product Line 1 is our premium offering"
+    },
+    {
+      "id": "ProductLine2",
+      "label": "Product Line 2",
+      "group": "instance",
+      "class": "ProductLines",
+      "hidden": true,
+      "specifications": {},
+      "valueProposition": "Product Line 2 provides a lower cost alternative"
+    },
+    {
+      "id": "test",
+      "label": "Test",
+      "group": "class",
+      "features": [
+        "Feature"
+      ],
+      "specifications": {
+        "one": "two"
+      },
+      "valueProposition": "Some value propositions"
+    },
+    {
+      "id": "test2",
+      "label": "test2",
+      "group": "class",
+      "class": "test",
+      "hidden": true
+    },
+    {
+      "id": "test3",
+      "label": "test3",
+      "group": "instance",
+      "class": "test2",
+      "hidden": true
+    }
+  ],
+  "edges": [
+    {
+      "from": "Offers",
+      "to": "Solutions",
+      "label": "Offers Drive"
+    },
+    {
+      "from": "Solutions",
+      "to": "ProductLines",
+      "label": "Solutions Utilise"
+    },
+    {
+      "from": "ProductLines",
+      "to": "Feedback",
+      "label": "Drives"
+    },
+    {
+      "from": "Feedback",
+      "to": "Offers",
+      "label": "Improves"
+    },
+    {
+      "from": "test",
+      "to": "Offers",
+      "label": "delivers"
+    },
+    {
+      "from": "test",
+      "to": "test2",
+      "label": "trial"
+    }
+  ]
+}
